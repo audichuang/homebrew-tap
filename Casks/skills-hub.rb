@@ -1,9 +1,9 @@
 cask "skills-hub" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "0.2.1"
-  sha256 arm:   "b8038cb7db3a0c343a88c43c25e06d66403724f60dd5f1067e6e5fcf4129c188",
-         intel: "8f208c53f107032230ffd94ede9dfdc5e29aca238944a8b6f746d3ce376d7b64"
+  version "0.2.2"
+  sha256 arm:   "eecd3d2af6fff08014785cf1c647b5f3b5516a0102cd91ee8d21c649d051a90e",
+         intel: "22b788a751a0e479add563a4984cef2fb4619689192cf2222a66a8f520d5b6d1"
 
   url "https://github.com/audichuang/skills-hub/releases/download/v#{version}/Skills-Hub-v#{version}-macOS-#{arch}.dmg"
   name "Skills Hub"
