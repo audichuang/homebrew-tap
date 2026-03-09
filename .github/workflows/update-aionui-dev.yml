@@ -1,0 +1,174 @@
+name: Update AionUi Dev Cask/Formula
+
+on:
+  repository_dispatch:
+    types: [update-aionui-dev]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g., v1.8.23-my-abc1234)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    name: Update AionUi Dev
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout homebrew-tap
+        uses: actions/checkout@v6
+
+      - name: Get release info
+        id: info
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ github.event.client_payload.tag || inputs.tag }}"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+          # 從 tag 解析版本號 (v1.8.23-my-abc1234 → 1.8.23)
+          VERSION=$(echo "$TAG" | sed 's/^v//' | sed 's/-my-.*//')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📦 Version: $VERSION, Tag: $TAG"
+
+          # 取得 Release 資產 URL
+          RELEASE_JSON=$(gh release view "$TAG" --repo audichuang/AionUi --json assets --jq '.assets')
+
+          # macOS DMG
+          DMG_URL=$(echo "$RELEASE_JSON" | jq -r '.[] | select(.name | test("mac-arm64\\.dmg$")) | .url // .browserDownloadUrl')
+          echo "dmg_url=$DMG_URL" >> $GITHUB_OUTPUT
+          DMG_NAME=$(echo "$RELEASE_JSON" | jq -r '.[] | select(.name | test("mac-arm64\\.dmg$")) | .name')
+          echo "dmg_name=$DMG_NAME" >> $GITHUB_OUTPUT
+
+          # Linux AppImage x86_64
+          APPIMAGE_URL=$(echo "$RELEASE_JSON" | jq -r '.[] | select(.name | test("linux-x86_64\\.AppImage$")) | .url // .browserDownloadUrl')
+          echo "appimage_url=$APPIMAGE_URL" >> $GITHUB_OUTPUT
+          APPIMAGE_NAME=$(echo "$RELEASE_JSON" | jq -r '.[] | select(.name | test("linux-x86_64\\.AppImage$")) | .name')
+          echo "appimage_name=$APPIMAGE_NAME" >> $GITHUB_OUTPUT
+
+          echo "DMG: $DMG_NAME"
+          echo "AppImage: $APPIMAGE_NAME"
+
+      - name: Download assets and compute SHA256
+        id: sha
+        run: |
+          TAG="${{ steps.info.outputs.tag }}"
+          VERSION="${{ steps.info.outputs.version }}"
+
+          # Download DMG
+          DMG_NAME="${{ steps.info.outputs.dmg_name }}"
+          if [ -n "$DMG_NAME" ] && [ "$DMG_NAME" != "null" ]; then
+            gh release download "$TAG" --repo audichuang/AionUi --pattern "$DMG_NAME" --dir /tmp/
+            DMG_SHA=$(shasum -a 256 "/tmp/$DMG_NAME" | awk '{print $1}')
+            echo "dmg_sha=$DMG_SHA" >> $GITHUB_OUTPUT
+            echo "DMG SHA256: $DMG_SHA"
+          fi
+
+          # Download AppImage
+          APPIMAGE_NAME="${{ steps.info.outputs.appimage_name }}"
+          if [ -n "$APPIMAGE_NAME" ] && [ "$APPIMAGE_NAME" != "null" ]; then
+            gh release download "$TAG" --repo audichuang/AionUi --pattern "$APPIMAGE_NAME" --dir /tmp/
+            APPIMAGE_SHA=$(shasum -a 256 "/tmp/$APPIMAGE_NAME" | awk '{print $1}')
+            echo "appimage_sha=$APPIMAGE_SHA" >> $GITHUB_OUTPUT
+            echo "AppImage SHA256: $APPIMAGE_SHA"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Update Cask (macOS)
+        run: |
+          VERSION="${{ steps.info.outputs.version }}"
+          TAG="${{ steps.info.outputs.tag }}"
+          DMG_SHA="${{ steps.sha.outputs.dmg_sha }}"
+
+          cat > Casks/aionui-dev.rb << 'CASK_EOF'
+          cask "aionui-dev" do
+            version "VERSION_PLACEHOLDER"
+            sha256 "SHA_PLACEHOLDER"
+
+            url "https://github.com/audichuang/AionUi/releases/download/TAG_PLACEHOLDER/AionUi-VERSION_PLACEHOLDER-mac-arm64.dmg"
+            name "AionUi (Dev)"
+            desc "AI Agent Cowork Platform - Personal Development Build"
+            homepage "https://github.com/audichuang/AionUi"
+
+            depends_on macos: ">= :monterey"
+
+            app "AionUi.app"
+
+            zap trash: [
+              "~/Library/Application Support/AionUi",
+              "~/Library/Caches/AionUi",
+              "~/Library/Preferences/com.aionui.app.plist",
+              "~/Library/Saved Application State/com.aionui.app.savedState",
+            ]
+          end
+          CASK_EOF
+
+          # Replace placeholders
+          sed -i "s|VERSION_PLACEHOLDER|$VERSION|g" Casks/aionui-dev.rb
+          sed -i "s|SHA_PLACEHOLDER|$DMG_SHA|g" Casks/aionui-dev.rb
+          sed -i "s|TAG_PLACEHOLDER|$TAG|g" Casks/aionui-dev.rb
+
+          # Remove leading spaces from heredoc
+          sed -i 's/^          //' Casks/aionui-dev.rb
+
+          echo "Updated Cask:"
+          cat Casks/aionui-dev.rb
+
+      - name: Update Formula (Linux)
+        run: |
+          VERSION="${{ steps.info.outputs.version }}"
+          TAG="${{ steps.info.outputs.tag }}"
+          APPIMAGE_SHA="${{ steps.sha.outputs.appimage_sha }}"
+
+          cat > Formula/aionui-dev.rb << 'FORMULA_EOF'
+          class AionuiDev < Formula
+            desc "AI Agent Cowork Platform - Personal Development Build (Linux)"
+            homepage "https://github.com/audichuang/AionUi"
+            version "VERSION_PLACEHOLDER"
+
+            on_linux do
+              url "https://github.com/audichuang/AionUi/releases/download/TAG_PLACEHOLDER/AionUi-VERSION_PLACEHOLDER-linux-x86_64.AppImage"
+              sha256 "SHA_PLACEHOLDER"
+            end
+
+            def install
+              bin.install Dir["AionUi-*-linux-*.AppImage"].first || Dir["*.AppImage"].first => "aionui-dev"
+              chmod 0755, bin/"aionui-dev"
+            end
+
+            def caveats
+              <<~EOS
+                AionUi Dev installed as AppImage.
+                Run: aionui-dev
+                Note: Requires FUSE support. Install with: sudo apt-get install -y libfuse2
+              EOS
+            end
+
+            test do
+              assert_predicate bin/"aionui-dev", :exist?
+            end
+          end
+          FORMULA_EOF
+
+          sed -i "s|VERSION_PLACEHOLDER|$VERSION|g" Formula/aionui-dev.rb
+          sed -i "s|SHA_PLACEHOLDER|$APPIMAGE_SHA|g" Formula/aionui-dev.rb
+          sed -i "s|TAG_PLACEHOLDER|$TAG|g" Formula/aionui-dev.rb
+          sed -i 's/^          //' Formula/aionui-dev.rb
+
+          echo "Updated Formula:"
+          cat Formula/aionui-dev.rb
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Casks/aionui-dev.rb Formula/aionui-dev.rb
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "chore: update aionui-dev to ${{ steps.info.outputs.tag }}"
+          git push
+          echo "✅ homebrew-tap updated!"
