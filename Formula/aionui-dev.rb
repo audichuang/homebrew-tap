@@ -4,7 +4,7 @@ class AionuiDev < Formula
   version "2.0.0"
 
   on_linux do
-    url "https://github.com/audichuang/AionUi/releases/download/v1.8.23-my-e3cc71e/AionUi-#{version}-linux-x86_64.AppImage"
+    url "https://github.com/audichuang/AionUi/releases/download/v2.0.0-my-b6ce941/AionUi-#{version}-linux-x86_64.AppImage"
     sha256 "be9fe26fb9ba78032d139d7fe7704293787cbfb77452d22c3462edb840418f0c"
   end
 
