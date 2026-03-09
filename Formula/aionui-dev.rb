@@ -1,11 +1,11 @@
 class AionuiDev < Formula
   desc "AI Agent Cowork Platform - Personal Development Build (Linux)"
   homepage "https://github.com/audichuang/AionUi"
-  version "1.8.23"
+  version "2.0.0"
 
   on_linux do
     url "https://github.com/audichuang/AionUi/releases/download/v1.8.23-my-e3cc71e/AionUi-#{version}-linux-x86_64.AppImage"
-    sha256 "565ab80df9bcc8809f9937a323af05f9fc3d0fcb938c0a3d05db4d9bdcd9b597"
+    sha256 "be9fe26fb9ba78032d139d7fe7704293787cbfb77452d22c3462edb840418f0c"
   end
 
   def install
