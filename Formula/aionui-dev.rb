@@ -5,7 +5,7 @@ class AionuiDev < Formula
 
   on_linux do
     url "https://github.com/audichuang/AionUi/releases/download/v#{version}/AionUi-#{version}-linux-x86_64.AppImage"
-    sha256 "5bb63160b76a2d9a8863a1346407962d12396f3c57ddb8f3e35c8721c2214880"
+    sha256 "1be4d7de0c51b972117f16fc04a249c00a4ea05e7f3e0f3e49b00e0718a755d0"
   end
 
   def install

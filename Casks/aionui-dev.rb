@@ -1,6 +1,6 @@
 cask "aionui-dev" do
   version "2.0.0"
-  sha256 "f2a37c769c205f8f84fa251bc6c5cefdeb1afaf3d293f71bd7cd7e1d38cb8855"
+  sha256 "1b0f285459018b0afdeab2eff4e2c5d4a3f281d936115bf3fd70943bf024e443"
 
   url "https://github.com/audichuang/AionUi/releases/download/v#{version}/AionUi-#{version}-mac-arm64.dmg"
   name "AionUi (Dev)"
