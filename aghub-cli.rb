@@ -7,17 +7,17 @@ class AghubCli < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/audichuang/aghub/releases/download/v#{version}/aghub-cli-aarch64-apple-darwin.tar.gz"
-      sha256 "7957bf86fb55ba8d0b6b4426c58a7a2c3b19b8de70d542d9818c4de43b02393e"
+      sha256 "18e537f68a24cb00ce590fa39abd2afc32d41cce60609c962fcf22b8850f0bd6"
     else
       url "https://github.com/audichuang/aghub/releases/download/v#{version}/aghub-cli-x86_64-apple-darwin.tar.gz"
-      sha256 "c13c4b005e0a9bff17eef4081c9d320d6dc1475bfd17326257d37597969a92e5"
+      sha256 "c0ce607ccefd7a8a92f9bc887bcb39d2e1a76a1e2aabe258d1baf7b2651a54ac"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
       url "https://github.com/audichuang/aghub/releases/download/v#{version}/aghub-cli-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "81320cf8dadf99201c317055fac8a80136b8199ecb7a8fd153b322ee445197ae"
+      sha256 "86396c1d0484f240b403ff26f65fa3f1f1016aa07c31ef5800833cbc9ea356f2"
     end
   end
 
