@@ -7,7 +7,7 @@ cask "mdflux" do
   desc "Convert documents to clean Markdown — offline desktop app"
   homepage "https://github.com/audichuang/mdflux"
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :big_sur
   depends_on arch: :arm64
 
   app "MDFlux.app"
