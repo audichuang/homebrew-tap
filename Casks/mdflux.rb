@@ -1,6 +1,6 @@
 cask "mdflux" do
-  version "0.2.2"
-  sha256 "a43e5fbbb5be4420f8cb18db7253427eb4fa107aaadf17d3940a7949f02bca45"
+  version "0.2.3"
+  sha256 "2d9c097185d6a16f8670039f6a34a9a558f33c593187d913aef63f2248e13034"
 
   url "https://github.com/audichuang/mdflux/releases/download/v#{version}/MDFlux_#{version}_aarch64.dmg"
   name "MDFlux"
