@@ -1,12 +1,12 @@
 class AionuiDev < Formula
   desc "AI Agent Cowork Platform - Personal Development Build (Linux)"
   homepage "https://github.com/audichuang/AionUi"
-  version "2.0.0"
+  url "https://github.com/audichuang/AionUi/releases/download/v2.0.0/AionUi-2.0.0-linux-x86_64.AppImage"
+  sha256 "1be4d7de0c51b972117f16fc04a249c00a4ea05e7f3e0f3e49b00e0718a755d0"
+  license "Apache-2.0"
 
-  on_linux do
-    url "https://github.com/audichuang/AionUi/releases/download/v#{version}/AionUi-#{version}-linux-x86_64.AppImage"
-    sha256 "1be4d7de0c51b972117f16fc04a249c00a4ea05e7f3e0f3e49b00e0718a755d0"
-  end
+  depends_on arch: :x86_64
+  depends_on :linux
 
   def install
     # 直接把 AppImage 安裝到 bin
@@ -31,7 +31,7 @@ class AionuiDev < Formula
   end
 
   test do
-    assert_predicate bin/"aionui-dev", :exist?
+    assert_path_exists bin/"aionui-dev"
     assert_predicate bin/"aionui-dev", :executable?
   end
 end

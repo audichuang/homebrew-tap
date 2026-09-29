@@ -10,9 +10,14 @@ cask "skills-hub" do
   desc "Manage and sync AI coding skills across tools"
   homepage "https://github.com/audichuang/skills-hub"
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Skills Hub.app"
+
+  # Ad-hoc signed only: Gatekeeper kills a quarantined copy on launch.
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-cr", "{{appdir}}/Skills Hub.app"]
+  end
 
   zap trash: [
     "~/Library/Application Support/com.skillshub.app",
@@ -20,4 +25,11 @@ cask "skills-hub" do
     "~/Library/Preferences/com.skillshub.app.plist",
     "~/Library/Saved Application State/com.skillshub.app.savedState",
   ]
+
+  caveats <<~EOS
+    Skills Hub is not notarized (ad-hoc signed only). If macOS refuses to open it:
+      System Settings > Privacy & Security > Open Anyway
+    or
+      xattr -cr #{appdir}/Skills Hub.app
+  EOS
 end
