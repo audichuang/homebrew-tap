@@ -1,9 +1,9 @@
 cask "snip-sync" do
   arch arm: "arm", intel: "intel"
 
-  version "0.10.0"
-  sha256 arm:   "a8fe70e49e55727ca809c75f7609df1c6aa14e225e1f41ea825d2ca11ccb4667",
-         intel: "1f8636c0706f83468ab79d39e6b9463ac2008faa701611d8769e96d01af71833"
+  version "0.10.1"
+  sha256 arm:   "28b7854b3ace6d8cee7ee8753a443ee24a17fa6ae2d6d232d9626e9969897d65",
+         intel: "3c5212228db2f6be5303cecbd3773d72732ca57cac77e53e70a4402965dfe01b"
 
   url "https://github.com/audichuang/snip-sync/releases/download/v#{version}/snip-sync_mac_#{arch}.dmg"
   name "snip-sync"
