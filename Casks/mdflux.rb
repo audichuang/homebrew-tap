@@ -1,6 +1,6 @@
 cask "mdflux" do
-  version "0.2.5"
-  sha256 "adbb8f96ee49b6bc39b07a2b64b44e0945016919b2d40eadda5d08fb51ddc3ce"
+  version "0.2.6"
+  sha256 "308988728efacb3db55d3f303bad6acb3171cf792bf08a8f2779e68040efc612"
 
   url "https://github.com/audichuang/mdflux/releases/download/v#{version}/MDFlux_#{version}_aarch64.dmg"
   name "MDFlux"
@@ -15,7 +15,7 @@ cask "mdflux" do
   end
 
   depends_on arch: :arm64
-  depends_on :macos
+  depends_on macos: ">= :sonoma"
 
   app "MDFlux.app"
 
