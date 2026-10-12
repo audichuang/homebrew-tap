@@ -1,6 +1,6 @@
 cask "mdflux" do
-  version "0.2.6"
-  sha256 "308988728efacb3db55d3f303bad6acb3171cf792bf08a8f2779e68040efc612"
+  version "0.2.7"
+  sha256 "47a950652d7b644b915f961ef8a1c52000328662f9860e684b7925b17ea40628"
 
   url "https://github.com/audichuang/mdflux/releases/download/v#{version}/MDFlux_#{version}_aarch64.dmg"
   name "MDFlux"
@@ -15,6 +15,7 @@ cask "mdflux" do
   end
 
   depends_on arch: :arm64
+  # Keep in sync with tauri.conf.json bundle.macOS.minimumSystemVersion (14.0).
   depends_on macos: ">= :sonoma"
 
   app "MDFlux.app"
