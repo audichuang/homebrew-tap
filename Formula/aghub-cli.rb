@@ -1,23 +1,23 @@
 class AghubCli < Formula
   desc "AI coding agent configuration management tool (CLI)"
   homepage "https://github.com/audichuang/aghub"
-  version "2.41.1"
+  version "2.41.2"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/audichuang/aghub/releases/download/v#{version}/aghub-cli-aarch64-apple-darwin.tar.gz"
-      sha256 "1589253f974ce257a9801a9bb3bed9dda05c05bef719d7629031a41bfae55b6f"
+      sha256 "afec1f133d5987ef89ea64ac68be6374e259819ac33359fe226a695275421102"
     else
       url "https://github.com/audichuang/aghub/releases/download/v#{version}/aghub-cli-x86_64-apple-darwin.tar.gz"
-      sha256 "c744d005c4d9d0c4cdc4aaa0513cbf56f31fae02f530d5024fe034c033666167"
+      sha256 "789bf6968132091e10be7b40855e7ed5c69c829db803750d41699dc466eeace5"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
       url "https://github.com/audichuang/aghub/releases/download/v#{version}/aghub-cli-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "4c1ca45893f17911422032d1ddd6a9b0d1445eb3dcfd53dc8dc909473aeb19e7"
+      sha256 "a391a056ec3b230811c52c8018111b3dbcf9271fc24907f08d3d01d688dbb91c"
     end
   end
 
