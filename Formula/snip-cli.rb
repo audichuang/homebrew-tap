@@ -1,22 +1,22 @@
 class SnipCli < Formula
   desc "Sync code snippets between machines through the clipboard (CLI)"
   homepage "https://github.com/audichuang/snip-sync"
-  version "0.10.1"
+  version "0.10.2"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/audichuang/snip-sync/releases/download/v#{version}/snip-aarch64-apple-darwin.tar.gz"
-      sha256 "fa7adf6007704154dd92200f18089da4d8c6a30931860887095b037c97047b23"
+      sha256 "ed4f2381756468e37c06ba8d7bfbf6ef4f57d765086ce4cad50cdaad0349a638"
     else
       url "https://github.com/audichuang/snip-sync/releases/download/v#{version}/snip-x86_64-apple-darwin.tar.gz"
-      sha256 "3dc8bc7b6862e42e34f8e3641cc037fc2d73aa755b774c813854ffc1be15e597"
+      sha256 "7057a4948883f79b74004a550f3f5da7e63505a385e0b82aa0ff3151959178d7"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
       url "https://github.com/audichuang/snip-sync/releases/download/v#{version}/snip-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "b4b7f2396cc115d54240e342973b7aaf39eaa7e59c2ff4ebfe2617482084df90"
+      sha256 "1ec267b029d36e17944863fa7375371584088fe5ecb0a91aa5a4019b493f1d1a"
     end
   end
 
