@@ -8,7 +8,7 @@ cask "orca-fork" do
   homepage "https://github.com/audichuang/orca"
 
   depends_on arch: :arm64
-  depends_on macos: :big_sur
+  depends_on :macos
 
   # Same bundle id and user data as the official Orca, renamed on disk so both can stay installed.
   app "Orca.app", target: "Orca Fork.app"
