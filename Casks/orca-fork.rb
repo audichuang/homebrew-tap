@@ -1,6 +1,6 @@
 cask "orca-fork" do
-  version "1.4.229-fork.2"
-  sha256 "0d8da17f213747833e1e16a4174affb0b11641d88c43a82263c4e03e3a20ee8d"
+  version "1.4.229-fork.3"
+  sha256 "a606d6ba76b2ec2faca8ce95b36d5a4cc66284a67351735bcc0af40fbad402a4"
 
   url "https://github.com/audichuang/orca/releases/download/v#{version}/orca-fork-macos-arm64.dmg"
   name "Orca Fork"
@@ -31,7 +31,7 @@ cask "orca-fork" do
     Orca Fork shares its bundle id and settings with the official Orca, so run only one at a time.
     Its built-in auto-update is off; update with:
       brew upgrade --cask orca-fork
-    It is not notarized (ad-hoc signed only). If macOS refuses to open it:
+    It is self-signed, not notarized. If macOS refuses to open it:
       xattr -cr "#{appdir}/Orca Fork.app"
   EOS
 end
