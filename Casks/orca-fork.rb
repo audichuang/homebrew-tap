@@ -7,8 +7,14 @@ cask "orca-fork" do
   desc "Personal fork of the Orca IDE for orchestrating AI coding agents"
   homepage "https://github.com/audichuang/orca"
 
+  livecheck do
+    url :url
+    regex(/^v?(\d+(?:\.\d+)+-fork\.\d+)$/i)
+    strategy :github_releases
+  end
+
   depends_on arch: :arm64
-  depends_on :macos
+  depends_on macos: :monterey
 
   # Same bundle id and user data as the official Orca, renamed on disk so both can stay installed.
   app "Orca.app", target: "Orca Fork.app"
