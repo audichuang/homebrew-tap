@@ -28,6 +28,7 @@ brew untap audichuang/tap && brew tap audichuang/tap
 | **skills-hub** | `brew install --cask audichuang/tap/skills-hub` | Manage / sync AI coding skills. arm64 + Intel. |
 | **aionui-dev** | `brew install --cask audichuang/tap/aionui-dev` | AionUi personal dev build. Apple Silicon only. |
 | **snip-sync** | `brew install --cask audichuang/tap/snip-sync` | Clipboard snippet sync (desktop). arm64 + Intel. |
+| **orca-fork** | `brew install --cask audichuang/tap/orca-fork` | Personal fork of the Orca IDE (installs as `Orca Fork.app`, CLI `orca-fork`). Apple Silicon only. Shares settings with the official Orca; run one at a time. |
 
 ### MDFlux (quick start)
 
