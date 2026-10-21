@@ -1,16 +1,14 @@
 cask "aghub" do
-  arch arm: "aarch64", intel: "x64"
+  version "2.41.9"
+  sha256 "5e59c34823c7540fe8b633868629c2159c6a11d1068497917e2b752f49b3f908"
 
-  version "2.41.8"
-  sha256 arm:   "3d3a69b81c896969eb8e4ee8b1533a67eecfc570cd2a8b124036a14e52173acc",
-         intel: "30ca58f8a38210fc65854b9ca416b0515d1086654f588975b6f1fc37545092ce"
-
-  url "https://github.com/audichuang/aghub/releases/download/v#{version}/aghub_#{version}_#{arch}.dmg"
+  url "https://github.com/audichuang/aghub/releases/download/v#{version}/aghub_#{version}_aarch64.dmg"
   name "aghub"
   desc "AI coding agent configuration management tool (Desktop App)"
   homepage "https://github.com/audichuang/aghub"
 
   depends_on :macos
+  depends_on arch: :arm64
 
   app "aghub.app"
 
