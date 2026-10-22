@@ -1,6 +1,6 @@
 cask "aghub" do
-  version "2.41.9"
-  sha256 "5e59c34823c7540fe8b633868629c2159c6a11d1068497917e2b752f49b3f908"
+  version "2.42.0"
+  sha256 "18b2106756bf0b6c29d85adc4d71e642895c7957d0520be3b07edb5bc9ae7236"
 
   url "https://github.com/audichuang/aghub/releases/download/v#{version}/aghub_#{version}_aarch64.dmg"
   name "aghub"
