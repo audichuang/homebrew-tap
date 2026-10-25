@@ -29,6 +29,7 @@ brew untap audichuang/tap && brew tap audichuang/tap
 | **aionui-dev** | `brew install --cask audichuang/tap/aionui-dev` | AionUi personal dev build. Apple Silicon only. |
 | **snip-sync** | `brew install --cask audichuang/tap/snip-sync` | Clipboard snippet sync (desktop). arm64 + Intel. |
 | **orca-fork** | `brew install --cask audichuang/tap/orca-fork` | Personal fork of the Orca IDE (installs as `Orca Fork.app`, CLI `orca-fork`). Apple Silicon only. Shares settings with the official Orca; run one at a time. |
+| **codexbar-mobile** | `brew install --cask audichuang/tap/codexbar-mobile` | CodexBar Mac companion with iCloud sync to the iPhone app, from [audichuang/CodexBar-Mobile](https://github.com/audichuang/CodexBar-Mobile). Apple Silicon only. Notarized. |
 
 ### MDFlux (quick start)
 
