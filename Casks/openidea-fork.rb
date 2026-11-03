@@ -13,6 +13,8 @@ cask "openidea-fork" do
     strategy :github_releases
   end
 
+  # The app updates itself from the fork's releases; brew installs it once.
+  auto_updates true
   depends_on arch: :arm64
   depends_on macos: :big_sur
 
@@ -23,7 +25,6 @@ cask "openidea-fork" do
 
   caveats <<~EOS
     OpenIDEA Fork shares its bundle id and settings with the official OpenIDEA, so run only one at a time.
-    Its built-in update check is off; update with:
-      brew upgrade --cask openidea-fork
+    Its built-in updater follows the fork's releases (from 0.1.34-fork.2 on).
   EOS
 end
