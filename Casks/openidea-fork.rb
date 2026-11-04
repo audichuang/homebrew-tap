@@ -1,6 +1,6 @@
 cask "openidea-fork" do
-  version "0.1.35-fork.2"
-  sha256 "d747ee92906eda31a04ea0c7d621ebccfca625977cd4a06de34d4cbec003da07"
+  version "0.1.35-fork.3"
+  sha256 "0dd4384e3bf86ac691d035ccf4f5e97c3017aa6b8fa9ac658e98baa904f77920"
 
   url "https://github.com/audichuang/openidea/releases/download/v#{version}/openidea-fork-macos-arm64.dmg"
   name "OpenIDEA Fork"
