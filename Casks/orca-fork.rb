@@ -1,6 +1,6 @@
 cask "orca-fork" do
-  version "1.4.257-fork.1"
-  sha256 "daae9304e268f91622657d59d6e85740f24d5bcdb52d2c9d396bb94656b8cfe6"
+  version "1.4.257-fork.2"
+  sha256 "891055aa9033ce6efaf8a2bf8101539c95a216f3cd1d45e0ac6b8842f1575239"
 
   url "https://github.com/audichuang/orca/releases/download/v#{version}/orca-fork-macos-arm64.dmg"
   name "Orca Fork"
