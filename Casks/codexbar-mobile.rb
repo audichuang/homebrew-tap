@@ -1,6 +1,6 @@
 cask "codexbar-mobile" do
-  version "0.84.0.1-mobile.3.3.0-audi.4"
-  sha256 "3ba8baeb0a603f09fbe36308929e328257757bb5cf592f0279f86ff2b1110f3b"
+  version "0.85.0.1-mobile.3.3.0-audi.1"
+  sha256 "504e2c8191b56fdbedd2e23be268812655d03e0baaa05ad04ccfeac848246941"
 
   url "https://github.com/audichuang/CodexBar-Mobile/releases/download/v#{version}/CodexBar-#{version}.zip"
   name "CodexBar Mobile Mac Companion"
