@@ -1,6 +1,6 @@
 cask "daydo" do
-  version "0.1.0.459"
-  sha256 "12d8f2f98993859aece02868b0c05752b360160108279b2e3cc58bed36669d9d"
+  version "0.1.0.462"
+  sha256 "1d1905443dac802db473b1b28fedb9542b6275a072a3af8be8f6e7c90c2c23c3"
 
   url "https://github.com/audichuang/daydo/releases/download/mac-v#{version}/DayDo-#{version}.zip"
   name "DayDo"
