@@ -7,7 +7,7 @@ cask "daydo" do
   desc "To-do list and calendar"
   homepage "https://github.com/audichuang/daydo"
 
-  depends_on macos: ">= :tahoe"
+  depends_on macos: :tahoe
 
   app "DayDo.app"
 
